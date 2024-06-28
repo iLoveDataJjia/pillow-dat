@@ -75,6 +75,7 @@ class DATModel(ABC):
 
         def tensor2rgb(tensor: Tensor) -> Image:
             tensor = tensor.squeeze(0).clamp(0, 1).permute(1, 2, 0) * 255
+            tensor = tensor.cpu()
             output = PIL.fromarray(tensor.byte().numpy())
             return output
 
